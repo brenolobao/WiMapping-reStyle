@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiMapping</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            box-sizing: border-box;
+            font-family: Roboto;
+            transition: all .1s;
+        }
+
+        body {
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #e4e4e4;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+        }
+
+        .header {
+            height: 15%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 0, 0, .15);
+        }
+
+        .header a img {
+            width: 225px;
+        }
+
+        .mode-select button,
+        .startButton {
+            width: 175px;
+            border: none;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+            font-size: 1em;
+            margin: 10px;
+
+            font-weight: 500;
+
+        }
+
+
+        .mode-select button:hover,
+        .startButton:hover {
+            background-color: #459cfa;
+        }
+
+        .mode-select button:active,
+        .startButton:active {
+            transform: scale(1.01);
+        }
+
+        .content {
+            width: 100%;
+            height: 70%;
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            gap: 10px;
+            border: 1px solid rgba(0, 0, 0, .15);
+        }
+
+        .footer {
+            width: 100%;
+            height: 15%;
+            border: 1px solid rgba(0, 0, 0, .15);
+            border-radius: 15px;
+            display: flex;
+        }
+
+        .about,
+        .contact,
+        .copyright {
+            width: calc(100%/3) !important;
+            height: 100%;
+            border-right: 1px solid rgba(0, 0, 0, .15);
+        }
+
+        .copyright {
+            border: none;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .contact h2 {
+            font-size: 1em;
+            width: 100%;
+            height: 30%;
+            border-bottom: 1px solid rgba(0, 0, 0, .15);
+            justify-content: center;
+        }
+
+        .about {
+            display: flex;
+        }
+
+        .about h2 {
+            width: 13%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            border-right: 1px dashed rgba(0, 0, 0, .15);
+        }
+
+        .about h2 i {
+            font-size: 1.5em;
+        }
+
+        .about p {
+            font-size: .7em;
+            height: 100%;
+            width: 87%;
+            padding: 7.5px;
+            text-align: justify;
+            display: grid;
+            place-items: center;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact .socialButtons {
+            display: flex;
+            width: 100%;
+            height: 70%;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .contact .socialButtons a img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .section {
+            border: 1px solid rgba(0, 0, 0, .15);
+            border-radius: 15px;
+            height: 100%;
+        }
+
+        .section h2,
+        .contact h2 {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            color: rgb(39, 39, 39);
+            padding: 15px;
+            width: 100%;
+            height: 15%;
+            border-bottom: 1px solid rgba(0, 0, 0, .15);
+        }
+
+        #graphs h2 .graphTitle,
+        .resultsTitle {
+            display: flex;
+            gap: 10px;
+        }
+
+        .graphTitle i {
+            margin-top: 2px;
+        }
+
+        .testLog {
+            font-size: .6em;
+            font-weight: lighter;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 i {
+            font-size: 1.2em;
+        }
+
+        #controls {
+            width: 25%;
+        }
+
+        #controls .options,
+        #results .results {
+            height: 85%;
+            width: 100%;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+        }
+
+        #controls .options .startButton {
+            position: absolute;
+            bottom: -10px;
+            align-self: center;
+            width: 100%;
+            height: 15%;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+
+        #controls .options select {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, .15);
+        }
+
+        #controls .options label,
+        #results .results label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .results label i {
+            margin-bottom: 2px;
+        }
+
+        #graphs {
+            width: 50%;
+            overflow-y: auto;
+        }
+
+        #graphs h2,
+        #results h2 {
+            justify-content: space-between;
+        }
+
+        #results {
+            width: 25%;
+        }
+
+        .reportDownload {
+            padding: 10px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(0, 0, 0, .15);
+            border-radius: 50%;
+        }
+
+        .reportDownload:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .reportDownload:active {
+            transform: scale(1.05);
+        }
+
+        #results .results .general-average {
+            font-size: 3em;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            color: white;
+            padding: 10px;
+            border-radius: 15px;
+            background-color: #007bff;
+        }
+
+        #results .results .general-average span {
+            font-size: .5em;
+            text-align: center;
+            color: rgb(247, 246, 246);
+        }
+
+        .worst-result,
+        .best-result {
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            border: 2px dashed #DC3C22;
+            border-radius: 15px;
+        }
+
+        .best-result {
+            border-color: #86D293;
+        }
+
+        .title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .title h2 {
+            font-size: 1em;
+            color: rgb(82, 81, 81);
+            font-weight: normal;
+        }
+
+        @media (max-width:768px) {
+
+            .header,
+            .content,
+            .title {
+                flex-direction: column;
+            }
+
+            #controls,
+            #graphs,
+            #results {
+                width: 100%;
+            }
+
+            .header a img {
+                width: 150px;
+            }
+
+            .header {
+                height: auto;
+            }
+
+            .container {
+                height: auto;
+                overflow: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">
+                <a href=""><img src="assets/logo.jpg" alt="logo" srcset=""></a>
+                <h2>Internet Speed and Instability Meter</h2>
+            </div>
+            <div class="mode-select">
+                <button>Normal Test</button>
+                <button style="background-color:rgb(167, 167, 167);">Mapping</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="section" id="controls">
+                <h2> <i class="material-icons">tune</i>Controls</h2>
+                <div class="options">
+                    <label><i class="material-icons">timelapse</i>Rounds</label>
+                    <select name="" id="">
+                        <option value="">1 Rounds</option>
+                        <option value="">5 Rounds</option>
+                        <option value="">10 Rounds</option>
+                        <option value="">20 Rounds</option>
+                        <option value="">50 Rounds</option>
+                    </select>
+                    <label><i class="material-icons">file_download</i>Downloads</label>
+                    <select name="" id="">
+                        <option value="">5 downloads</option>
+                        <option value="">10 downloads</option>
+                        <option value="">20 downloads</option>
+                        <option value="">50 downloads</option>
+                        <option value="">100 downloads</option>
+                    </select>
+                    <button class="startButton">Start Test</button>
+                </div>
+            </div>
+            <div class="section" id="graphs">
+                <h2>
+                    <div class="graphTitle"><i class="material-icons">trending_up</i>Graphs</div>
+
+                    <div class="testLog"><i class="material-icons">loop</i>Rounds 1/1 - Downloads 1/10 (Total)</div>
+                </h2>
+            </div>
+            <div class="section" id="results">
+                <h2>
+                    <div class="resultsTitle"><i class="material-icons">check</i>Results</div>
+                    <button class="reportDownload" id="reportDownload" title="Download Report"><i
+                            class="material-icons">file_download</i></button>
+                </h2>
+                <div class="results">
+                    <label><i class="material-icons">network_check</i>General Average</label>
+                    <div class="general-average">89<span>Mb/s</span></div>
+                    <label><i class="material-icons">star</i>Best Result</label>
+                    <div class="best-result">115 Mb/s</div>
+                    <label><i class="material-icons">trending_down</i>Worst Result</label>
+                    <div class="worst-result">30 Mb/s</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="about">
+                <h2><i class="material-icons">info</i></h2>
+                <p>This application performs an internet download speed test based on the time it takes to download four
+                    files of different sizes (5 MB, 10 MB, 15 MB, and 20 MB). Each file is downloaded individually to
+                    calculate the average download speed of your connection.</p>
+            </div>
+            <div class="contact">
+                <h2>Contact</h2>
+                <div class="socialButtons">
+                    <a href=""><img src="assets/github.png" alt=""></a>
+                    <a href=""><img src="assets/instagram.png" alt=""></a>
+                    <a href=""><img src="assets/linkedin.png" alt=""></a>
+                    <a href=""><img src="assets/youtube.png" alt=""></a>
+                    <a href=""><img src="assets/facebook.png" alt=""></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Breno Lobão. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
