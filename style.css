@@ -190,11 +190,14 @@ body {
     height: 100%;
     border-radius: 15px;
     border: 2px dashed rgba(0, 0, 0, .2);
+    padding: 15px;
+    box-sizing: border-box;
 }
 
 .graph-item canvas {
     width: 100% !important;
     height: 100% !important;
+    object-fit: contain;
 }
 
 .graph a {
@@ -384,7 +387,8 @@ button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
 }
-.active{
+
+.active {
     background-color: #007bff;
 }
 
@@ -434,4 +438,12 @@ button:disabled {
         width: 100%;
         flex-direction: column;
     }
+
+    #graphs h2 .graphTitle,
+    .resultsTitle {
+        font-size: .8em;
+    }  
+    .controlsTitle{
+        font-size: 1.1em;
+    } 
 }
