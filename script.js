@@ -240,7 +240,6 @@ function finalizeNormalTest() {
             const averageSpeed = speedsMbps.reduce((sum, speed) => sum + speed, 0) / speedsMbps.length;
 
             resultsSummaryDiv.innerHTML = `
-                        <h2>Resultados Finais (Todos os Downloads)</h2>
                         <p>Total de Downloads Realizados: <strong>${individualDownloadSpeeds.length}</strong></p>
                         <p>Melhor Velocidade Individual: <strong>${bestSpeed.toFixed(2)} Mbps</strong></p>
                         <p>Pior Velocidade Individual: <strong>${worstSpeed.toFixed(2)} Mbps</strong></p>
