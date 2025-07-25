@@ -374,7 +374,6 @@ function finalizeMappingTest() {
     finalReportData.testDuration = ((performance.now() - testStartTime) / 1000).toFixed(2);
 
     resultsSummaryDiv.innerHTML = `
-                <h2>Mapeamento de Sinal Concluído!</h2>
                 <p>O relatório detalhado estará no PDF.</p>
                 <p>Total de cômodos testados: <strong>${mappingResults.length}</strong></p>
                 <p>Duração total do mapeamento: <strong>${finalReportData.testDuration} segundos</strong></p>
@@ -459,7 +458,7 @@ async function generatePdfReport() {
         yPos += 15;
 
         doc.setFontSize(16);
-        doc.text("Resultados Finais (Todos os Downloads)", margin, yPos);
+        doc.text("Resultados Finais", margin, yPos);
         yPos += 10;
         doc.setFontSize(12);
         doc.text(`Total de Downloads Realizados: ${finalReportData.totalDownloads || 'N/A'}`, margin, yPos);
