@@ -100,7 +100,7 @@ body {
 }
 
 .mode-select button,
-.startButton {
+.startButton, #startMappingTestBtn, #finishMappingBtn {
     width: 175px;
     border: none;
     padding: 10px;
@@ -139,7 +139,7 @@ body {
     position: relative;
 }
 
-#controls .options .startButton {
+#controls .options .startButton, #startMappingTestBtn {
     position: absolute;
     bottom: -10px;
     left: -10px;
@@ -150,7 +150,7 @@ body {
     border-top-right-radius: 0;
 }
 
-#controls .options select {
+#controls .options select, #currentRoom {
     padding: 10px;
     width: 100%;
     border-radius: 10px;
@@ -359,28 +359,36 @@ body {
 
 
 #mappingControls {
-    margin-top: 20px;
     padding: 15px;
-    border: 1px dashed #ccc;
     border-radius: 8px;
-    background-color: #f9f9f9;
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85%;
     width: 100%;
-    max-width: 300px;
     text-align: center;
+    position: relative;
 }
 
 #roomInputGroup {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 100%;
-    text-align: left;
+    text-align: center;
 }
 
 #mappingProgress {
     font-size: 1.1em;
     color: #666;
     margin-bottom: 10px;
+}
+#finishMappingBtn{
+    position:absolute;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    bottom: 15%;
+    border-radius: 0px;
 }
 
 button:disabled {
@@ -398,6 +406,7 @@ button:disabled {
     .container {
         height: auto;
         width: 100%;
+        padding: 5px;
     }
 
     .header,
@@ -409,13 +418,13 @@ button:disabled {
         width: 100% !important;
         height: auto;
         flex-direction: column;
-        padding: 20px;
+        padding: 10px;
         align-items: center;
     }
 
     #controls,
     #graphs {
-        height: 350px;
+        height: 380px;
     }
 
     .section {
